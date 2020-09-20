@@ -48,69 +48,67 @@ module testBench();
     integer nPassCount;
     integer i;
 
-    initial begin
+    initial begin 
         // print  0ns:
         clk=0;
         nPassCount = 0;
         i = 0;
         Input_A=1'b0; 
         Input_B=1'b0; 
-    end
 
-    initial begin 
-    	
     	#(`PERIOD)
 
-        for( i=0 ; i<4; i=i+1) begin
-            if(i==0) begin
-                Input_A=1'b1;
-                Input_B=1'b0;
+        // *** Case 1 ***
+        Input_A=1'b1;
+        Input_B=1'b0;
                 
-                #(`PERIOD)
-                $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
-                	Input_A, Input_B, Output_S, Output_C); 
+        #(`PERIOD)
+        $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
+                Input_A, Input_B, Output_S, Output_C); 
+        i = i+1;
+        if( Output_S == 1'b1 && Output_C == 1'b0)
+            nPassCount = nPassCount + 1;
+        // *** Case 1 ***
+        
+        // *** Case 2 ***
+        Input_A=1'b0;
+        Input_B=1'b1;
+                
+        #(`PERIOD)
+        $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
+                Input_A, Input_B, Output_S, Output_C); 
+        i = i+1;
+        if( Output_S == 1'b1 && Output_C == 1'b0)
+            nPassCount = nPassCount + 1;
+        // *** Case 2 ***
 
-                if( Output_S == 1'b1 && Output_C == 1'b0)
-                    nPassCount = nPassCount + 1;
-            end
-            else if(i==1) begin
-                Input_A=1'b0;
-                Input_B=1'b1;   
+        // *** Case 3 ***
+        Input_A=1'b1;
+        Input_B=1'b1;
+                
+        #(`PERIOD)
+        $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
+                Input_A, Input_B, Output_S, Output_C); 
+        i = i+1;
+        if( Output_S == 1'b0 && Output_C == 1'b1)
+            nPassCount = nPassCount + 1;
+        // *** Case 3 ***
 
-                #(`PERIOD)
-                $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
-                	Input_A, Input_B, Output_S, Output_C); 
-
-                if( Output_S == 1'b1 && Output_C == 1'b0)
-                    nPassCount = nPassCount + 1; 
-            end
-            else if(i==2) begin
-                Input_A=1'b1;
-                Input_B=1'b1;  
-
-                #(`PERIOD)
-                $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
-                	Input_A, Input_B, Output_S, Output_C); 
-
-                if( Output_S == 1'b0 && Output_C == 1'b1)
-                    nPassCount = nPassCount + 1;
-            end
-            else if (i==3) begin
-                Input_A = 1'b0;
-                Input_B = 1'b0;
-
-                #(`PERIOD)
-                $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
-                	Input_A, Input_B, Output_S, Output_C); 
-
-                if( Output_S == 1'b0 && Output_C == 1'b0)
-                    nPassCount = nPassCount + 1;
-            end
-        end
+        // *** Case 4 ***
+        Input_A=1'b0;
+        Input_B=1'b0;
+                
+        #(`PERIOD)
+        $display("%4dns: A=%d, B=%d, S=%d, C=%d", $stime, 
+                Input_A, Input_B, Output_S, Output_C); 
+        i = i+1;
+        if( Output_S == 1'b0 && Output_C == 1'b0)
+            nPassCount = nPassCount + 1;
+        // *** Case 4 ***
 
         #(`PERIOD)
 
-        if(nPassCount == 4 ) begin
+        if(nPassCount == i ) begin
             $display("Pass the TestBench!");
         end
         else begin
