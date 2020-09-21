@@ -41,7 +41,7 @@ module testBench();
         .B(Input_B), 
         .Cin(Input_Cin),
         .Sum(Output_S), 
-        .Cout(Output_C)
+        .Cout(Output_Cout)
     );
 
     // clk generator
@@ -62,9 +62,9 @@ module testBench();
         Input_Cin=1'b0;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b0 && Output_C == 1'b0)
+        if( Output_S == 1'b0 && Output_Cout == 1'b0)
             nPassCount = nPassCount + 1;
         
         // **** Case 1 ****
@@ -75,9 +75,9 @@ module testBench();
         Input_Cin=1'b0;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b1 && Output_C == 1'b0)
+        if( Output_S == 1'b1 && Output_Cout == 1'b0)
             nPassCount = nPassCount + 1;
         // **** Case 2 ****    
 
@@ -87,9 +87,9 @@ module testBench();
         Input_Cin=1'b0;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b1 && Output_C == 1'b0)
+        if( Output_S == 1'b1 && Output_Cout == 1'b0)
             nPassCount = nPassCount + 1;
         // **** Case 3 ****
 
@@ -99,9 +99,9 @@ module testBench();
         Input_Cin=1'b0;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b0 && Output_C == 1'b1)
+        if( Output_S == 1'b0 && Output_Cout == 1'b1)
             nPassCount = nPassCount + 1;
         // **** Case 4 ****
         
@@ -111,9 +111,9 @@ module testBench();
         Input_Cin=1'b1;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b1 && Output_C == 1'b0)
+        if( Output_S == 1'b1 && Output_Cout == 1'b0)
             nPassCount = nPassCount + 1;
         // **** Case 5 ****
 
@@ -123,9 +123,9 @@ module testBench();
         Input_Cin=1'b1;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b0 && Output_C == 1'b1)
+        if( Output_S == 1'b0 && Output_Cout == 1'b1)
             nPassCount = nPassCount + 1;
         // **** Case 6 ****    
 
@@ -135,9 +135,9 @@ module testBench();
         Input_Cin=1'b1;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b0 && Output_C == 1'b1)
+        if( Output_S == 1'b0 && Output_Cout == 1'b1)
             nPassCount = nPassCount + 1;
         // **** Case 7 ****
 
@@ -147,9 +147,9 @@ module testBench();
         Input_Cin=1'b1;
                 
         #(`PERIOD)
-        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_C); 
+        $display("%4dns: A=%d, B=%d, Cin=%d, Sum=%d, Cout=%d", $stime, Input_A, Input_B, Input_Cin, Output_S, Output_Cout); 
         i = i+1;
-        if( Output_S == 1'b1 && Output_C == 1'b1)
+        if( Output_S == 1'b1 && Output_Cout == 1'b1)
             nPassCount = nPassCount + 1;
         // **** Case 8 ****
 
